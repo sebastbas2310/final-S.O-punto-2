@@ -1,7 +1,8 @@
 from fastapi import FastAPI, HTTPException
-from models.person_model import Person
+from models.schema_person import Person
 from utils.s3_helper import read_csv_from_s3, write_csv_to_s3
 import os
+from routers.person_router import router as person_router
 
 
 app = FastAPI(title="API con FastAPI y S3")
@@ -46,3 +47,6 @@ def get_persons_count():
         return {"count": 0}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+# include the person router (prefix /person)
+app.include_router(person_router)
