@@ -1,0 +1,15 @@
+[Unit]
+Description=Final Punto2 FastAPI Service
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/finalPunto2SO
+Environment=BUCKET_NAME=tu-bucket-s3
+ExecStart=/usr/bin/env uvicorn main:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
