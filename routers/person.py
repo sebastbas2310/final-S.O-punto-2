@@ -1,3 +1,4 @@
+from .person_router import router as router
 from fastapi import APIRouter
 from models.person import Person
 fake_person_db = [
